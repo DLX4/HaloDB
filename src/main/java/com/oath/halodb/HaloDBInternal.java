@@ -720,6 +720,8 @@ class HaloDBInternal {
             logger.debug("Completed scanning tombstone file {}. Found {} tombstones, {} are still active",
                 tombstoneFile.getName(), count, active);
             tombstoneFile.close();
+            iterator = null;
+            System.gc();
 
             if (options.isCleanUpTombstonesDuringOpen()) {
                 logger.debug("Copied {} out of {} tombstones. Deleting {}", copied, count, tombstoneFile.getName());
